@@ -1,0 +1,7 @@
+{
+  "name": "Seneca",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
