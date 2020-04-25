@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" (click)="logout($event)">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Inicio
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content padding id="page3">
+    <h3 id="inicio-heading2" style="color:#ffffff;">
+        Bienvenido/a, {{this.usuarioService.nombre}}
+    </h3>
+    <div class="spacer" style="width:300px;height:16px;" id="inicio-spacer3">
+    <ion-button id="btnPasarLista" (click)="pasarLista()">Pasar lista</ion-button>
+    </div>
+</ion-content>

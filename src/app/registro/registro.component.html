@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title id="header">
+        Registro
+    </ion-title>
+</ion-header>
+
+<ion-content padding id="page2">
+    <div id="container">
+        <h3 id="h3">Registro</h3>
+        <form id="registro-form5">
+            <ion-list id="registro-list1">
+                <ion-item id="registro-input5">
+                    <ion-label>
+                        Nombre
+                    </ion-label>
+                    <ion-input type="text"></ion-input>
+                </ion-item>
+                <ion-item id="registro-input6">
+                    <ion-label>
+                        Email
+                    </ion-label>
+                    <ion-input type="email"></ion-input>
+                </ion-item>
+                <ion-item id="registro-input7">
+                    <ion-label>
+                        Contraseña
+                    </ion-label>
+                    <ion-input type="password"></ion-input>
+                </ion-item>
+            </ion-list>
+            <ion-button id="registro-button5" ion-button (click)="registro()">
+                Registrar
+            </ion-button>
+        </form>
+    </div>
+</ion-content>
