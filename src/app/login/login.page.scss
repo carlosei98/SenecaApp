@@ -1,11 +1,23 @@
 #container {
   text-align: center;
+  align: center;
 
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
+  left: 15%;
+  right: 15%;
+  top: 40%;
   transform: translateY(-50%);
+
+  width: 75%;
+}
+
+
+#seneca-heading1 {
+  color: #ffffff;
+  text-align: center;
+
+  position: relative;
+  margin-top: 2%;
 }
 
 #container strong {
@@ -27,5 +39,5 @@
 }
 
 ion-content ion-toolbar {
-  --background: translucent;
+  --background: transparent;
 }

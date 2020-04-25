@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            Séneca
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <h3 id="seneca-heading1">
+        Bienvenido a Séneca
+    </h3>
+
+    <div id="container">
+        <form id="seneca-form3">
+            <ion-item id="seneca-input2">
+                <ion-label>
+                    Usuario
+                </ion-label>
+                <ion-input type="text" placeholder="" id="user" [(ngModel)]="user" name="user"></ion-input>
+            </ion-item>
+        </form>
+        <div class="spacer" style="width:100px;height:18px;" id="seneca-spacer2"></div>
+        <form id="seneca-form4">
+            <ion-item id="seneca-input4">
+                <ion-label>
+                    Contraseña
+                </ion-label>
+                <ion-input type="password" placeholder="" id="pass" [(ngModel)]="password" name="password"></ion-input>
+            </ion-item>
+        </form>
+        <div class="spacer" style="width:100px;height:18px;" id="seneca-spacer3"></div>
+        <ion-button (click)="login()" id="seneca-button1">
+            <ion-icon name="checkmark"></ion-icon>
+            Conectar
+        </ion-button>
+        <ion-button id="seneca-button4" routerLink="/registro/" router-direction="forward">
+            <ion-icon name="checkmark"></ion-icon>
+            ¿No tienes cuenta? Crea una
+        </ion-button>
+        <ion-button id="seneca-button3" block>
+            ¿Necesitas ayuda?
+        </ion-button>
+    </div>
+</ion-content>
