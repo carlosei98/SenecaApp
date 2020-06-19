@@ -10,20 +10,32 @@
 </ion-header>
 
 <ion-content>
+    <ion-item>
+        <ion-label>Tramo horario: </ion-label>
+        <ion-select placeholder="Select One" [(ngModel)]="this.tramoHorario" (ngModelChange)="this.service.listarAlumnosPorDiaYHora(this.tramoHorario)">
+            <ion-select-option value="primera">Primera</ion-select-option>
+            <ion-select-option value="segunda">Segunda</ion-select-option>
+            <ion-select-option value="tercera">Tercea</ion-select-option>
+            <ion-select-option value="cuarta">Cuarta</ion-select-option>
+            <ion-select-option value="quinta">Quinta</ion-select-option>
+            <ion-select-option value="sexta">Sexta</ion-select-option>
+        </ion-select>
+    </ion-item>
     <ion-list>
-        <ion-list-header>
-            <ion-label>Nombre</ion-label>
+            <ion-list-header>
+            <ion-label>Apellidos, Nombre</ion-label>
+            <ion-label>Acción</ion-label>
         </ion-list-header>
-        <ion-item *ngFor="let alumno of alumnos; index as i;">
-            <ion-label>i: {{alumno.apellidos}}, {{alumno.nombre}}</ion-label>
-            <ion-radio-group allowEmptySelection="true">
-                <ion-item>
-                    <ion-label (change)="ponerFalta(alumno)">F&nbsp;</ion-label>
-                    <ion-radio></ion-radio>
-                    <ion-label (change)="ponerRetraso(alumno)">R&nbsp;</ion-label>
-                    <ion-radio></ion-radio>
-                </ion-item>
-            </ion-radio-group>
+        <ion-item [(ngModel)]="service.listaAsistenciaAlumnos" ngDefaultControl *ngFor="let alumno of this.service.listaAsistenciaAlumnos; index as i;">
+            <ion-label>{{alumno.apellidos}}, {{alumno.nombre}}</ion-label>
+            <ion-radio-group allowEmptySelection="true" (ionChange)="ponerAsistencia($event, alumno)">
+                        <ion-item>
+                            <ion-label >F</ion-label>
+                            <ion-radio value="falta"></ion-radio>
+                            <ion-label >R</ion-label>
+                            <ion-radio value="retraso"></ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
         </ion-item>
     </ion-list>
     <ion-item-divider></ion-item-divider>

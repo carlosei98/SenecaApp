@@ -10,9 +10,13 @@
 </ion-header>
 <ion-content padding id="page3">
     <h3 id="inicio-heading2" style="color:#ffffff;">
-        Bienvenido/a, {{this.usuarioService.nombre}}
+        Bienvenido/a, {{this.usuarioService.USUARIO_ACTUAL.nombre}}
     </h3>
     <div class="spacer" style="width:300px;height:16px;" id="inicio-spacer3">
-    <ion-button id="btnPasarLista" (click)="pasarLista()">Pasar lista</ion-button>
+        <ion-button *ngIf="usuarioService.USUARIO_ACTUAL.rol == 'PROFESOR'" id="btnPasarLista" (click)="pasarLista()">Pasar lista</ion-button>
+        <ion-button *ngIf="usuarioService.USUARIO_ACTUAL.rol == 'ADMINISTRADOR'" id="btnCRUD" (click)="CRUD()">Alta/Baja/Consulta de usuarios</ion-button>
+        <ion-button *ngIf="usuarioService.USUARIO_ACTUAL.rol == 'ALUMNO'" id="btnVerFaltas" (click)="verFaltas()">Ver faltas de asistencia</ion-button>
+        <ion-button *ngIf="usuarioService.USUARIO_ACTUAL.rol == 'PROFESOR'" id="btnVerFaltasAlumnos" (click)="verFaltasAlumnos()">Ver faltas de asistencia</ion-button>
+        <ion-button *ngIf="usuarioService.USUARIO_ACTUAL.rol == 'PROFESOR'" id="btnModificarFaltasAlumnos" (click)="modificarFaltasAlumnos()">Modificar faltas de asistencia</ion-button>
     </div>
 </ion-content>

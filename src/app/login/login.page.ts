@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {UsuarioService} from '../usuario.service';
+import {ApiService} from '../api.service';
 import {timeout} from 'rxjs/operators';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'app-home',
@@ -12,12 +13,17 @@ import {timeout} from 'rxjs/operators';
 export class LoginPage {
     user: string;
     password: string;
+    loginForm: FormGroup;
 
-    constructor(private service: UsuarioService) {
+    constructor(private service: ApiService, public formBuilder: FormBuilder) {
+        this.loginForm = new FormGroup({
+            user: new FormControl(),
+            password: new FormControl()
+        });
     }
 
     login() {
-        this.service.login(this.user, this.password);
+        this.service.login(this.loginForm.value.user, this.loginForm.value.password);
     }
 }
 
