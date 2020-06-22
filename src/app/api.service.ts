@@ -22,7 +22,7 @@ export class ApiService {
     }
 
     login(user, password) {
-        this.http.post('http://localhost:5000/logueo/' + user + '&' + password, {responseType: 'json'}).subscribe(data => {
+        this.http.post('http://carlosei98.dynamic-dns.net:5000/logueo/' + user + '&' + password, {responseType: 'json'}).subscribe(data => {
             if (data != null) {
                 this.USUARIO_ACTUAL = data as Persona;
                 this.router.navigate(['/inicio']);
@@ -36,14 +36,14 @@ export class ApiService {
     }
 
     obtenerUsuarios(): any {
-        this.http.get('http://localhost:5000/personas/listPersonas', {responseType: 'json'}).subscribe(data => {
+        this.http.get('http://carlosei98.dynamic-dns.net:5000/personas/listPersonas', {responseType: 'json'}).subscribe(data => {
             this.listaPersonas = data;
         });
     }
 
     borrarUsuario(info: any): boolean {
         let ret = false;
-        this.http.delete('http://localhost:5000/persona/borrar/' + info, {observe: 'response'}).subscribe(data => {
+        this.http.delete('http://carlosei98.dynamic-dns.net:5000/persona/borrar/' + info, {observe: 'response'}).subscribe(data => {
                 if (data.status === 200) {
                     Toast.show({
                         text: 'Usuario borrado.',
@@ -63,7 +63,7 @@ export class ApiService {
     }
 
     async modificarUsuario(persona: Persona) {
-        await this.http.put('http://localhost:5000/persona/modificar/' + persona.id, persona, {observe: 'response'}).subscribe(data => {
+        await this.http.put('http://carlosei98.dynamic-dns.net:5000/persona/modificar/' + persona.id, persona, {observe: 'response'}).subscribe(data => {
             if (data.status === 200) {
                 Toast.show({
                     text: 'Usuario modificado.',
@@ -88,7 +88,7 @@ export class ApiService {
                 persona.contraseña.concat(letras[i]);
             }
         }
-        await this.http.put('http://localhost:5000/registro/', persona, {observe: 'response'}).subscribe(data => {
+        await this.http.put('http://carlosei98.dynamic-dns.net:5000/registro/', persona, {observe: 'response'}).subscribe(data => {
             if (data.status === 200) {
                 Toast.show({
                     text: 'Usuario creado.',
@@ -105,7 +105,7 @@ export class ApiService {
     }
 
     async listarAsistencias() {
-        await this.http.post('http://localhost:5000/asistencia/listar', this.USUARIO_ACTUAL, {responseType: 'json'}).subscribe(data => {
+        await this.http.post('http://carlosei98.dynamic-dns.net:5000/asistencia/listar', this.USUARIO_ACTUAL, {responseType: 'json'}).subscribe(data => {
             this.listaAsistenciaAlumno = data;
         });
     }
@@ -131,13 +131,13 @@ export class ApiService {
                     break;
             }
 
-            this.http.post('http://localhost:5000/alumnos/' + dia + '&' + tramoHorario, {responseType: 'json'}).subscribe(data => {
+            this.http.post('http://carlosei98.dynamic-dns.net:5000/alumnos/' + dia + '&' + tramoHorario, {responseType: 'json'}).subscribe(data => {
                 if (data != null) {
                     this.listaAsistenciaAlumnoDia = data as Persona;
                 }
             });
         } else {
-            this.http.post('http://localhost:5000/asistencia/listar/' + dia.substr(0, 10) + '&' + tramoHorario, {responseType: 'json'}).subscribe(data => {
+            this.http.post('http://carlosei98.dynamic-dns.net:5000/asistencia/listar/' + dia.substr(0, 10) + '&' + tramoHorario, {responseType: 'json'}).subscribe(data => {
                 if (data != null) {
                     this.listaAsistenciaAlumnoDia = data as Persona;
                 }
@@ -147,7 +147,7 @@ export class ApiService {
     }
 
     async guardarAsistencias(alumnos: Asistencia[]) {
-        await this.http.put('http://localhost:5000/asistencia/guardar', alumnos, {observe: 'response'}).subscribe(data => {
+        await this.http.put('http://carlosei98.dynamic-dns.net:5000/asistencia/guardar', alumnos, {observe: 'response'}).subscribe(data => {
             if (data.status === 200) {
                 Toast.show({
                     text: 'Asistencias guardadas.',
@@ -186,23 +186,23 @@ export class ApiService {
     }
 
     async listarAsistenciasAsignatura(asignatura: string) {
-        await this.http.get('http://localhost:5000/asitencia/listar/' + asignatura, {responseType: 'json'}).subscribe(data => {
+        await this.http.get('http://carlosei98.dynamic-dns.net:5000/asitencia/listar/' + asignatura, {responseType: 'json'}).subscribe(data => {
             this.listaAsistenciaAsig = data;
         });
     }
 
     async listarAsignaturas() {
-        await this.http.get('http://localhost:5000/asignaturas/all', {responseType: 'json'}).subscribe(data => {
+        await this.http.get('http://carlosei98.dynamic-dns.net:5000/asignaturas/all', {responseType: 'json'}).subscribe(data => {
             this.listaAsignaturas = data;
         });
     }
 
     async matricular(persona: Persona, listaAsigAlumno: any) {
         // tslint:disable-next-line:max-line-length
-        await this.http.post('http://localhost:5000/alumnos/getID/' + persona.nombre + '&' + persona.apellidos, null, {responseType: 'json'}).subscribe(data => {
+        await this.http.post('http://carlosei98.dynamic-dns.net:5000/alumnos/getID/' + persona.nombre + '&' + persona.apellidos, null, {responseType: 'json'}).subscribe(data => {
             if (data != null) {
                 // tslint:disable-next-line:max-line-length
-                this.http.put('http://localhost:5000/asignaturas/matricular/' + String(data), listaAsigAlumno, {observe: 'response'}).subscribe(data2 => {
+                this.http.put('http://carlosei98.dynamic-dns.net:5000/asignaturas/matricular/' + String(data), listaAsigAlumno, {observe: 'response'}).subscribe(data2 => {
                     if (data2.status === 200) {
                         Toast.show({
                             text: 'Alumno matriculado.',
