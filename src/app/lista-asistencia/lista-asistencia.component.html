@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="logout($event)">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Faltas de asistencia
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Día</ion-label>
+      <ion-label>Hora</ion-label>
+      <ion-label>Tipo</ion-label>
+      <ion-label>Justificada</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let asistencia of this.service.listaAsistenciaAlumno; index as i">
+      <ion-label>{{asistencia.dia}}</ion-label>
+      <ion-label>{{asistencia.hora}}</ion-label>
+      <ion-label>{{asistencia.tipo}}</ion-label>
+      <ion-label *ngIf="asistencia.justificada === 1">Justificada</ion-label>
+      <ion-label *ngIf="asistencia.justificada === 0">Injustificada</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)="logout($event)">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Crud
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list id="list">
+    <ion-list-header>
+      <ion-label>Nombre</ion-label>
+      <ion-label>Acción</ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let persona of this.service.listaPersonas; index as i;">
+      <ion-label>{{persona.apellidos}}, {{persona.nombre}}</ion-label>
+      <ion-item>
+        <ion-button (click)="borrar(i)"> Borrar</ion-button> <ion-button (click)="modificar(i)">Modificar</ion-button>
+      </ion-item>
+    </ion-item>
+  </ion-list>
+<ion-button (click)="alta()">Alta</ion-button>
+</ion-content>

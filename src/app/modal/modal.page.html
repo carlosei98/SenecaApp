@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>{{accion}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="formModificar" (ngSubmit)="this.modificar()">
+        <ion-item>
+            <ion-label>Nombre</ion-label>
+            <ion-input type="text" formControlName="nombre" placeholder="" id="nombre" [(ngModel)]="this.persona.nombre" name="nombre" [value]="this.persona.nombre" required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Apellidos</ion-label>
+            <ion-input type="text" formControlName="apellidos" placeholder="" id="apellidos" [(ngModel)]="this.persona.apellidos" name="Apellidos" [value]="this.persona.apellidos" required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>DNI</ion-label>
+            <ion-input type="text" formControlName="dni" placeholder="" id="dni" [(ngModel)]="this.persona.dni" name="dni" [value]="this.persona.dni" required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Calle</ion-label>
+            <ion-input type="text" formControlName="calle" placeholder="" id="calle" [(ngModel)]="this.persona.calle" name="dni" [value]="this.persona.calle" required></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Localidad</ion-label>
+            <ion-input type="text" formControlName="localidad" placeholder="" id="localidad" [(ngModel)]="this.persona.localidad" name="dni" [value]="this.persona.localidad" required></ion-input>
+        </ion-item>
+        <ion-item id>
+            <ion-label>Rol</ion-label>
+            <ion-select placeholder="{{this.persona.rol}}" [(ngModel)]="this.persona.rol" formControlName="rol">
+                <ion-select-option value="ALUMNO">ALUMNO</ion-select-option>
+                <ion-select-option value="PROFESOR">PROFESOR</ion-select-option>
+                <ion-select-option value="ADMINISTRADOR">ADMINISTRADOR</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item *ngIf="this.persona.rol === 'PROFESOR'">
+            <!-- ToDo -->
+        </ion-item>
+        <ion-list *ngIf="this.persona.rol === 'ALUMNO'">
+            <ion-item *ngFor="let asignatura of this.service.listaAsignaturas">
+                <ion-label>{{asignatura.nombre}}</ion-label>
+                <ion-checkbox slot="end" (ionChange)="matricularAsig($event, asignatura)"></ion-checkbox>
+            </ion-item>
+        </ion-list>
+    </form>
+    <ion-button type="submit" (click)="this.procesar()">
+        <ion-icon name="checkmark"></ion-icon>
+        {{accion}}
+    </ion-button>
+</ion-content>

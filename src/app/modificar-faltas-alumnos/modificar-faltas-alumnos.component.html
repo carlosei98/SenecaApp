@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Pasar lista
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Tramo horario: </ion-label>
+    <ion-select placeholder="Select One" [(ngModel)]="this.tramoHorario">
+      <ion-select-option value="primera">Primera</ion-select-option>
+      <ion-select-option value="segunda">Segunda</ion-select-option>
+      <ion-select-option value="tercera">Tercea</ion-select-option>
+      <ion-select-option value="cuarta">Cuarta</ion-select-option>
+      <ion-select-option value="quinta">Quinta</ion-select-option>
+      <ion-select-option value="sexta">Sexta</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Día: </ion-label>
+    <ion-datetime display-format="MM/DD/YY" [(ngModel)]="dia"></ion-datetime>
+  </ion-item>
+  <ion-button (click)="this.service.listarAlumnosPorDiaYHora(tramoHorario, dia)">Obtener faltas de asistencia</ion-button>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Apellidos, Nombre</ion-label>
+      <ion-label>Acción</ion-label>
+    </ion-list-header>
+    <ion-item [(ngModel)]="service.listaAsistenciaAlumnoDia" ngDefaultControl *ngFor="let alumno of this.service.listaAsistenciaAlumnoDia; index as i;">
+      <ion-label>{{alumno.persona.apellidos}}, {{alumno.persona.nombre}}</ion-label>
+      <ion-radio-group allowEmptySelection="true" (ionChange)="ponerAsistencia($event, alumno, dia)">
+        <ion-item>
+          <ion-label >F</ion-label>
+          <ion-radio value="falta"></ion-radio>
+          <ion-label >R</ion-label>
+          <ion-radio value="retraso"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-item>
+  </ion-list>
+  <ion-item-divider></ion-item-divider>
+  <ion-button (click)="guardar()">Guardar</ion-button>
+</ion-content>
